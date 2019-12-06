@@ -1,41 +1,31 @@
 local PLUGIN = PLUGIN
 
-ix.command.Add("Apply", {
-	description = "Says your name and CID to a CP.",
-	arguments = ix.type.string,
-	OnRun = function(itemTable, client, data, entity, index)
-	
-	local item = ix.item.Get("cid")
-	
-	if (!client:IsCombine(player)) then
-		client:ConCommand("say "..(data.Name or "no one")..", "..(data.Digits or "00000"))
-		return false
+ix.command.Add('Apply', {
+    description = 'Says your name and CID to a CP.',
+    OnRun = function(self, client)
+        local character = client:GetCharacter()
+
+        if character then
+            local cid = character:GetData'cid'
+            
+            if cid then
+                ix.chat.Send(client, 'ic', client:Name()..'#'..cid)
+            elseif client:IsCombine() then
+                return 'You don´t own a CID!'
+            else
+                return 'You don´t own a CID!'
+            end
+        end
     end
-	
-	elseif (!item) then return end
-		client:ConCommand("say "..(data.Name or "no one")..", "..(data.Digits or "00000"))
-		return false
-	end
-	
-	elseif (item) then return end
-		ix.player:Notify(player, "You don�t own a CID!");
-		return false
-	end
-end
 })
 
-ix.command.Add("Name", {
-	description = "Says your name.",
-	arguments = ix.type.string,
-	OnRun = function (client, data, entity, index)
-    
-	if (!client:IsCombine(player)) then
-	    client:ConCommand("say "..(data.Name or "no one")..;
-		return false
+ix.command.Add('Name', {
+    description = 'Says your name.',
+    OnRun = function(self, client)
+        local character = client:GetCharacter()
+
+        if character then
+            ix.chat.Send(client, 'ic', client:Name())
+        end
     end
-	elseif (client:IsCombine(player)) then
-		client:ConCommand("say "..(data.Name or "no one")..;
-		return false
-	end
-end
 })
