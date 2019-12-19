@@ -71,7 +71,6 @@ if CLIENT then
 end
 
 ix.command.Add("Doorkick", {
-	syntax = "<Nothing>",
 	description = "Allows you to kick doors.",
 	OnRun = function(self, client)
 			
