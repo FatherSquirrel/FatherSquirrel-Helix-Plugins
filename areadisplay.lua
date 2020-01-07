@@ -1,7 +1,7 @@
 local PLUGIN = PLUGIN
 PLUGIN.name = "Area Display"
 PLUGIN.author = "Chessnut ported to Helix by FatherSquirrel"
-PLUGIN.desc = "Shows which location you are at."
+PLUGIN.desc = "Shows which location are you at."
 
 if (SERVER) then
 	PLUGIN.areas = PLUGIN.areas or {}
@@ -49,7 +49,7 @@ else
 	end)
 end
 
-ix.command.Add("Areaadd", {
+ix.command.Add("AreaAdd", {
 	adminOnly = true,
 	syntax = "<string name> [bool showTime]",
 	onRun = function(client, arguments)
@@ -87,7 +87,7 @@ ix.command.Add("Areaadd", {
 	end
 })
 
-ix.command.Add("Arearemove", {
+ix.command.Add("AreaRemove", {
 	adminOnly = true,
 	onRun = function(client, arguments)
 		local count = 0
